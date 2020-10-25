@@ -20,5 +20,5 @@ A list of n-fold index
 The function \code{folds} generates a list of index for the n-fold cross-validation
 }
 \examples{
-folds(seq(10), 3, 2020)
+folds(seq(10), n = 3, seed = 2020)
 }

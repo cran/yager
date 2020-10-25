@@ -18,7 +18,7 @@
 #' X <- scale(iris[, 1:4])
 #' gnet <- grnn.fit(x = X, y = Y)
 
-grnn.fit <- function(x, y, w = rep(1, length(y)), sigma = 1) {
+grnn.fit <- function(x, y, sigma = 1, w = rep(1, length(y))) {
   ### CHECK X MATRIX ###
   if (is.matrix(x) == F) stop("x needs to be a matrix.", call. = F)
   if (anyNA(x) == T) stop("NA found in x.", call. = F)

@@ -4,16 +4,16 @@
 \alias{grnn.fit}
 \title{Create a general regression neural network}
 \usage{
-grnn.fit(x, y, w = rep(1, length(y)), sigma = 1)
+grnn.fit(x, y, sigma = 1, w = rep(1, length(y)))
 }
 \arguments{
 \item{x}{The matrix of predictors}
 
 \item{y}{The vector of response variable}
 
-\item{w}{The vector of weights with default = 1 for each record}
-
 \item{sigma}{The scalar of smoothing parameter}
+
+\item{w}{The vector of weights with default = 1 for each record}
 }
 \value{
 A general regression neural network object

@@ -9,7 +9,7 @@
 #' @return A list of n-fold index
 #'
 #' @examples
-#' folds(seq(10), 3, 2020)
+#' folds(seq(10), n = 3, seed = 2020)
 
 folds <- function(idx, n, seed = 1) {
   g <- with(set.seed(seed), sample(idx, length(idx))) %% n + 1

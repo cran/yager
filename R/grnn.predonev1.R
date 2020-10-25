@@ -31,21 +31,16 @@ grnn.predone <- function(net, x, type = 1) {
   ### CHECK INPUT TYPE (CURRENTLY SUPPORTING 1 / 2) ###
   if (!(type %in% c(1, 2))) stop("the type is not supported.", call. = F)
 
-#  xl <- split(net$x, seq(nrow(net$x)))
-  xl <- matrix(rep(x, length(net$y)), nrow = length(net$y), byrow = TRUE)
+  xl <- split(net$x, seq(nrow(net$x)))
 
   if (type == 1) {
   ### EUCLIDEAN DISTANCE BY DEFAULT ###
-    num <- sum(net$w * net$y * exp(-(rowSums((xl - net$x) ^ 2)) / (2 * (net$sigma ^ 2))))
-    den <- sum(net$w * exp(-(rowSums((xl - net$x) ^ 2)) / (2 * (net$sigma ^ 2))))
-#    num <- sum(net$w * net$y * exp(-Reduce(c, lapply(xl, function(xi) sum((x - xi) ^ 2))) / (2 * (net$sigma ^ 2))))
-#    den <- sum(net$w * exp(-Reduce(c, lapply(xl, function(xi) sum((x - xi) ^ 2))) / (2 * (net$sigma ^ 2))))
+    num <- sum(net$w * net$y * exp(-Reduce(c, lapply(xl, function(xi) sum((x - xi) ^ 2))) / (2 * (net$sigma ^ 2))))
+    den <- sum(net$w * exp(-Reduce(c, lapply(xl, function(xi) sum((x - xi) ^ 2))) / (2 * (net$sigma ^ 2))))
   } else if (type == 2) {
   ### MANHATTAN DISTANCE ###
-    num <- sum(net$w * net$y * exp(-(rowSums(abs(xl - net$x))) / net$sigma))
-    den <- sum(net$w * exp(-(rowSums(abs(xl - net$x))) / net$sigma))
-#    num <- sum(net$w * net$y * exp(-Reduce(c, lapply(xl, function(xi) sum(abs(x - xi)))) / net$sigma))
-#    den <- sum(net$w * exp(-Reduce(c, lapply(xl, function(xi) sum(abs(x - xi)))) / net$sigma))
+    num <- sum(net$w * net$y * exp(-Reduce(c, lapply(xl, function(xi) sum(abs(x - xi)))) / net$sigma))
+    den <- sum(net$w * exp(-Reduce(c, lapply(xl, function(xi) sum(abs(x - xi)))) / net$sigma))
   }
   return(num / den)
 }
